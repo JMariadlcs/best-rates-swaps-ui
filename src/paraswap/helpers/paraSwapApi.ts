@@ -2,7 +2,7 @@ import axios from "axios";
 import BigNumber from "bignumber.js";
 import { OptimalRate, SwapSide } from "paraswap-core";
 
-const API_URL = "https://apiv5.paraswap.io";
+export const API_URL = "https://apiv5.paraswap.io";
 const USER_ADDRESS =
   /* process.env.USER_ADDRESS */ "0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245";
 
@@ -107,7 +107,7 @@ interface Swapper {
   }): Promise<TransactionParams>;
 }
 
-function createSwapper(networkID: number, apiURL: string): Swapper {
+export function createSwapper(networkID: number, apiURL: string): Swapper {
   type PriceQueryParams = {
     srcToken: string;
     destToken: string;
