@@ -246,6 +246,7 @@ export async function getSwapTransaction({
 
     return transactionRequest;
   } catch (error: any) {
+    console.log("Error", error)
     console.error(error.response.data);
     throw new Error(error.response.data.error);
   }
