@@ -45,14 +45,19 @@ const tokens: Record<number, MinTokenData[]> = {
       address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
     },
     {
-      decimals: 8,
-      symbol: "WBTC",
-      address: "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6"
+      decimals: 18,
+      symbol: "WETH",
+      address: "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+    },
+    {
+      decimals: 6,
+      symbol: "USDT",
+      address: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f"
     }
   ]
 };
 
-function getToken(symbol: Symbol, networkID = Networks.MAINNET): MinTokenData {
+export function getToken(symbol: Symbol, networkID = Networks.MAINNET): MinTokenData {
   const token = tokens[networkID]?.find((t) => t.symbol === symbol);
 
   if (!token)

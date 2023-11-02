@@ -1,13 +1,13 @@
 import logo from '../logo.svg';
 import "../App.css";
 
-import returnnumber from '../paraswap/paraSwapApiCalls';
+
 
 
 const Landing = () => {
 
-    const number = returnnumber()
-    console.log("Number", number)
+ 
+
 
   return (
     <div className="App">
