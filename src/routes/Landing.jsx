@@ -14,7 +14,7 @@ const Landing = () => {
   }*/
 
   const getFullTx = async () => {
-   const fullTx = await getSwapTransaction({ srcToken: 'WETH', destToken: 'USDT', srcAmount: 10000000, networkID: 137 })
+   const fullTx = await getSwapTransaction({ srcToken: 'WETH', destToken: 'USDT', srcAmount: 1, networkID: 137 })
    console.log("FullTx", fullTx)
   }
 

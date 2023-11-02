@@ -3,8 +3,7 @@ import BigNumber from "bignumber.js";
 import { OptimalRate, SwapSide } from "paraswap-core";
 
 export const API_URL = "https://apiv5.paraswap.io";
-const USER_ADDRESS =
-  /* process.env.USER_ADDRESS */ "0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245";
+const USER_ADDRESS ='0xF258BAFeCe36CB5543fb2121A4fd1Dd1079a49B9';
 
 const PARTNER = "chucknorris";
 const SLIPPAGE = 1; // 1%
