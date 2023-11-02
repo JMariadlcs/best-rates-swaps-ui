@@ -240,7 +240,7 @@ export async function getSwapTransaction({
     console.log("TransactionRequest", transactionRequest);
 
     return transactionRequest;
-  } catch (error) {
+  } catch (error: any) {
     console.error(error.response.data);
     throw new Error(error.response.data.error);
   }

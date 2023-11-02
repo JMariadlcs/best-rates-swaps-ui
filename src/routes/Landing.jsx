@@ -1,7 +1,7 @@
 import logo from '../logo.svg';
 import "../App.css";
 
-import returnnumber from '../paraswap/paraSwapApi';
+import returnnumber from '../paraswap/paraSwapApiCalls';
 
 
 const Landing = () => {
