@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Landing from "./routes/Landing"
+import Main from "./routes/Main"
 
 function App() {
 
@@ -7,7 +7,7 @@ function App() {
       <BrowserRouter>
         <div className="global">
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Main />} />
           </Routes>
         </div>
       </BrowserRouter>

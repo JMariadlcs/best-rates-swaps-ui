@@ -5,7 +5,7 @@ import * as paraSwapApi from '../paraswap/helpers/paraSwapApi'
 import { createSwapper, getSwapTransaction } from '../paraswap/helpers/paraSwapApi'
 
 
-const Landing = () => {
+const Main = () => {
 
   /*const getRate = async () => {
     const swapper = paraSwapApi.createSwapper(137, paraSwapApi.API_URL)
@@ -14,7 +14,7 @@ const Landing = () => {
   }*/
 
   const getFullTx = async () => {
-   const fullTx = await getSwapTransaction({ srcToken: 'MATIC', destToken: 'USDT', srcAmount: 0.01, networkID: 137, userAddress:  paraSwapApi.USER_ADDRESS})
+   const fullTx = await getSwapTransaction({ srcToken: 'MATIC', destToken: 'USDT', srcAmount: 0.01, networkID: 137, userAddress: paraSwapApi.USER_ADDRESS, onlyParams: true})
    console.log("FullTx", fullTx)
   }
 
@@ -42,4 +42,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Main;

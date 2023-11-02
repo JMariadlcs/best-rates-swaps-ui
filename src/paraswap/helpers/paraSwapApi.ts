@@ -231,7 +231,6 @@ export async function getSwapTransaction({
     const minAmount = new BigNumber(priceRoute.destAmount)
       .times(1 - slippage / 100)
       .toFixed(0);
-
     const transactionRequest = await ps.buildSwap({
       srcToken,
       destToken,
