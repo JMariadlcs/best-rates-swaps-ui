@@ -21,7 +21,6 @@ const Main = () => {
   getFullTx()
 
 
-
   return (
     <div className="App">
       <header className="App-header">
