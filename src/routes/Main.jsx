@@ -5,6 +5,7 @@ import * as paraSwapApi from '../paraswap/helpers/paraSwapApi'
 import { createSwapper, getSwapTransaction } from '../paraswap/helpers/paraSwapApi'
 
 import { getSushiSwapPrice } from '../commonSwaps/sushiswap/sushiswapHelper'
+import { getCamelotV2SwapPrice } from '../commonSwaps/camelotV2/camelotV2Helper';
 
 const Main = () => {
 
@@ -22,6 +23,7 @@ const Main = () => {
   getFullTx()
 
   getSushiSwapPrice('0x82aF49447D8a07e3bd95BD0d56f35241523fBab1', '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9', 1000000000000)
+  getCamelotV2SwapPrice('0x82aF49447D8a07e3bd95BD0d56f35241523fBab1', '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9', 1000000000000)
 
   return (
     <div className="App">
