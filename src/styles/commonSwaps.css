@@ -1,0 +1,35 @@
+.commonSwaps-page {
+    background-color: #282c34;
+}
+.CommonSwaps {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .CommonSwaps button {
+    display: inline-block;
+    background-color: #ef499f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+.CommonSwaps button:hover{
+    background-color: #ff0090;
+}
+
+.CommonSwaps button:focus {
+    outline: none;
+}
