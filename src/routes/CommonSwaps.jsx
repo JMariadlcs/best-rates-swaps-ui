@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { getSushiSwapPrice } from '../commonSwaps/sushiswap/sushiswapHelper'
-import { getCamelotV2SwapPrice } from '../commonSwaps/camelotV2/camelotV2Helper';
-import MetaMaskConnect from '../components/MetaMaskConnect';
+import { getCamelotV2SwapPrice } from '../commonSwaps/camelotV2/camelotV2Helper'
+import DepositCommonSwaps from '../components/DepositCommonSwaps'
 
 import '../styles/commonSwaps.css'
 
@@ -28,7 +28,6 @@ const CommonSwaps = () => {
 
     return (
         <div className="commonSwaps-page">
-        <MetaMaskConnect></MetaMaskConnect>
         <div className="CommonSwaps">
             <header className="commonSwaps-header">
                 <section className='commonSwaps-section'>
@@ -36,7 +35,7 @@ const CommonSwaps = () => {
                     <button onClick={getSwapRate}>Get new swap rates</button>
                     <p>SushiSwap rate amount: {sushiRate}</p>
                     <p>CamelotSwapAmountOut rate amount: {camelotRate}</p>
-
+                    <DepositCommonSwaps></DepositCommonSwaps>
                 </section>
             </header>
         </div>
