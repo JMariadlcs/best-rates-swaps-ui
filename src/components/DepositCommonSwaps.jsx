@@ -208,6 +208,7 @@ const DepositCommonSwaps = () => {
             {
                 userWalletInfo.address &&
                 (<>
+                 <p className="textdiv"> OPTINAL: CHECK TREASURY BALANCES </p>
                     <button className="reloadTreasuryBalances" onClick={getTreasuryBalances}> Update treasury balances</button>
                 </>)
             }
