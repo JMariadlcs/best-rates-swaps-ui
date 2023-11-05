@@ -10,7 +10,8 @@ const SLIPPAGE = 1; // 1%
 
 enum Networks {
   MAINNET = 1,
-  POLYGON = 137
+  POLYGON = 137,
+  ARBITRUM = 42161
 }
 
 interface MinTokenData {
@@ -37,21 +38,21 @@ const tokens: Record<number, MinTokenData[]> = {
       address: "0x6B175474E89094C44Da98b954EedeAC495271d0F"
     }
   ],
-  [Networks.POLYGON]: [
+  [Networks.ARBITRUM]: [
     {
       decimals: 18,
-      symbol: "MATIC",
+      symbol: "ETH",
       address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
     },
     {
       decimals: 18,
       symbol: "WETH",
-      address: "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+      address: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1"
     },
     {
       decimals: 6,
       symbol: "USDT",
-      address: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f"
+      address: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
     }
   ]
 };
@@ -227,6 +228,8 @@ export async function getSwapTransaction({
       destToken,
       srcAmount
     });
+
+    console.log("priceRoute", priceRoute)
 
     const minAmount = new BigNumber(priceRoute.destAmount)
       .times(1 - slippage / 100)

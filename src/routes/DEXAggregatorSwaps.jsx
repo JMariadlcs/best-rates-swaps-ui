@@ -1,6 +1,6 @@
 import "../App.css";
 
-import DEXAggregatorSwaps from '../DEXAggregatorSwaps/DEXAggregatorSwaps'
+import DEXAggregatorSwaps from '../DEXAggregatorSwaps/paraswap/DEXAggregatorSwaps'
 
 const DEXAggregatorSwapsPage = () => {
 
