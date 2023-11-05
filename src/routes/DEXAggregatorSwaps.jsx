@@ -10,7 +10,7 @@ const DEXAggregatorSwapsPage = () => {
         <header className="commonSwaps-header">
           <section className='commonSwaps-section'>
             <div className="centered-container">
-              <h1 className='become-title'>Welcome to Best-Swaps-Rates</h1>
+              <h1 className='become-title'>DEXAggregator Swaps: Paraswap</h1>
               <DEXAggregatorSwaps ></DEXAggregatorSwaps>
             </div>
           </section>

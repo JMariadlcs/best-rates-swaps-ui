@@ -20,3 +20,16 @@
 .access-button:focus {
     outline: none;
 }
+
+.welcome-text {
+    padding: 500px
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column; /* or row if you want horizontal centering */
+    justify-content: center; /* vertically center */
+    align-items: center; /* horizontally center */
+    text-align: center; /* center text within elements if applicable */
+    /* Add any other styling you need for the container */
+}
