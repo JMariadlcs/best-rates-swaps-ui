@@ -1,2 +1,3 @@
 export const commonSwapsTreasuryAddress = "0x4bd90828b5937e0757C630d1f2124096451d7AE5"
 export const WETHAddress = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1"
+export const USDTAddress = "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
