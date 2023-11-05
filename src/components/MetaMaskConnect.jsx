@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import '../styles/metamaskConnect.css';
 
@@ -17,52 +17,54 @@ export const NETWORKS = {
 }
 
 const MetaMaskConnect = ({ setUserWalletInfo, setWeb3Provider, setTxSigner }) => {
-    const buttonHandler = async () => {
-        if (window.ethereum) {
+    const [accounts, setAccounts] = useState([]);
+    const [error, setError] = useState(null);
 
-            const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-            if (chainId !== 42161) {
-                await window.ethereum.request({ method: 'wallet_addEthereumChain', params: [NETWORKS.arbitrum], });
-            }
-            try {
+    const connectToMetaMask = async () => {
+        try {
+            if (window.ethereum) {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const web3 = new Web3(window.ethereum);
-                await web3.eth.getAccounts()
-                    .then(accounts => { 
-                        console.log("Acc", accounts[0])
-                        accountChangeHandler(accounts[0])
-                        setTxSigner(accounts[0])
-                    })
-            } catch (error) {
-                console.error(error);
+
+                // Get the user's Ethereum accounts
+                const accounts = await web3.eth.getAccounts();
+
+                if (accounts.length > 0) {
+                    // Successful connection, set the user's account
+                    const address = accounts[0];
+
+                    // Fetch the balance
+                    const balance = await web3.eth.getBalance(address);
+
+                    setUserWalletInfo({
+                        address,
+                        balance: web3.utils.fromWei(balance, 'ether'),
+                    });
+
+                    setWeb3Provider(web3);
+                    setTxSigner(address);
+                } else {
+                    setError("No Ethereum accounts available.");
+                }
+            } else {
+                setError("MetaMask not detected. Please install and configure MetaMask.");
             }
+        } catch (error) {
+            setError(error.message || "An error occurred while connecting to MetaMask.");
         }
     };
 
-    const accountChangeHandler = async (address) => {
-        try {
-            const web3 = new Web3(window.ethereum);
-            const balance = await web3.eth.getBalance(address);
-            setUserWalletInfo({
-                address: address,
-                balance: web3.utils.fromWei(balance, 'ether'),
-            });
-            setWeb3Provider(web3);
-            await web3.eth.getAccounts()
-                    .then(accounts => { 
-                        console.log("Acc", accounts[0])
-                        
-                        setTxSigner(accounts[0])
-                    })
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    useEffect(() => {
+        // Attempt to connect to MetaMask when the component mounts
+        connectToMetaMask();
+    }, []);
 
     return (
         <div className="buy-btns-container">
-            <button onClick={buttonHandler} className="connect-wallet">
+            <button onClick={connectToMetaMask} className="connect-wallet">
                 <p>Connect Wallet</p>
             </button>
+            {error && <div className="error-message">{error}</div>}
         </div>
     );
 };
