@@ -1,10 +1,8 @@
-import { createSwapper, getSwapTransaction } from './helpers/paraSwapApi'
-import * as paraSwapApi from './helpers/paraSwapApi'
 import { useState } from 'react';
 import MetaMaskConnect from '../../components/MetaMaskConnect';
 import { DEXAggregatorAddress, WETHAddress, USDTAddress } from '../../contracts/addresses/contractAddresses'
 import WETHAbi from '../../contracts/abis/WETHABI.json'
-import { getPrices, getTransactionData, performTransaction}  from './helpers/paraSwapHelpers'
+import { getPrices, getTransactionData, performTransaction } from './helpers/paraSwapHelpers'
 
 const DEXAggregatorSwaps = () => {
     const [userWalletInfo, setUserWalletInfo] = useState({ address: undefined, balance: undefined });
@@ -48,21 +46,14 @@ const DEXAggregatorSwaps = () => {
         const srcDecimals = 18
         const destToken = 'USDT'
         const destDecimals = 6
-        const srcAmount  = amount
+        const srcAmount = amount
         const side = 'SELL'
         const networkID = '42161'
         const includeDEXS = ['Curve', 'UniswapV2', 'UniswapV3', 'SushiSwap']
 
-        // const userAddress = userWalletInfo.address
-        // const onlyParams = true
-        // const includeDEXS = ['Curve', 'UniswapV2', 'UniswapV3', 'SushiSwap']
-        // const excludeContractMethods = ['directUniV3Swap', 'directUniV3Swap', 'directCurveV1Swap', 'directCurveV2Swap', 'directBalancerV2GivenInSwap']
         const routePrices = await getPrices(srcToken, srcDecimals, destToken, destDecimals, srcAmount, side, networkID, includeDEXS)
         let txData = await getTransactionData(networkID, routePrices, userWalletInfo.address)
-        const tx = await performTransaction(txSigner, txData)
-        console.log("txtxtx", tx)
-        // const fullTx = await getSwapTransaction({ srcToken: 'WETH', destToken: 'USDT', srcAmount: 0.00001, networkID: 42161, userAddress: userWalletInfo.address, onlyParams: true, includeDEXS: ['Curve', 'UniswapV2', 'UniswapV3', 'SushiSwap'], excludeContractMethods: ['directUniV3Swap', 'directUniV3Swap', 'directCurveV1Swap', 'directCurveV2Swap', 'directBalancerV2GivenInSwap'] })
-       // console.log("routePrices", routePrices)
+        const tx = await performTransaction(txData)
     }
 
     return (
@@ -83,14 +74,14 @@ const DEXAggregatorSwaps = () => {
             {
                 userWalletInfo.address && <button className="access-button" onClick={buildTx}>BuildTx</button>
             }
-            { userWalletInfo.address &&
+            {userWalletInfo.address &&
                 <input
-                type="number"
-                id="amountInput"
-                placeholder="Deposit WETH amount in WEI"
-                value={amount}
-                onChange={handleDepositAmountChange}
-            />
+                    type="number"
+                    id="amountInput"
+                    placeholder="Deposit WETH amount in WEI"
+                    value={amount}
+                    onChange={handleDepositAmountChange}
+                />
             }
         </section>
     )
