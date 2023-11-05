@@ -26,14 +26,11 @@ const MetaMaskConnect = ({ setUserWalletInfo, setWeb3Provider, setTxSigner }) =>
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const web3 = new Web3(window.ethereum);
 
-                // Get the user's Ethereum accounts
                 const accounts = await web3.eth.getAccounts();
 
                 if (accounts.length > 0) {
-                    // Successful connection, set the user's account
                     const address = accounts[0];
 
-                    // Fetch the balance
                     const balance = await web3.eth.getBalance(address);
 
                     setUserWalletInfo({
@@ -55,7 +52,6 @@ const MetaMaskConnect = ({ setUserWalletInfo, setWeb3Provider, setTxSigner }) =>
     };
 
     useEffect(() => {
-        // Attempt to connect to MetaMask when the component mounts
         connectToMetaMask();
     }, []);
 
