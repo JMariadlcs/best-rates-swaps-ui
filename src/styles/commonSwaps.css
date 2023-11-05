@@ -49,4 +49,8 @@
     margin: 0;
     padding: 0;
   }
+
+.needToLoadRate {
+    color: red
+}
   
