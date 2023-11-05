@@ -3,7 +3,7 @@ import commonSwapsTreasuryContract from '../contracts/commonSwaps/commonSwapsTre
 export const getWETHBalanceInTreasury = async() => {
     try {
         const amountOut = await commonSwapsTreasuryContract.methods.WETHAmount().call();
-        console.log("SushiSwapV2 AmountsOut: ", amountOut[amountOut.length - 1]);
+        console.log("WETH Balance in contract: ", amountOut[amountOut.length - 1]);
         return amountOut[amountOut.length - 1]
     } catch (error) {
         console.error("Error calling contract method:", error);
