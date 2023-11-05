@@ -21,7 +21,7 @@ const MetaMaskConnect = ({ setUserWalletInfo, setWeb3Provider, setTxSigner }) =>
         if (window.ethereum) {
 
             const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-            if (chainId !== 137) {
+            if (chainId !== 42161) {
                 await window.ethereum.request({ method: 'wallet_addEthereumChain', params: [NETWORKS.arbitrum], });
             }
             try {
