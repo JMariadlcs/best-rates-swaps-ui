@@ -4,7 +4,7 @@ import MetaMaskConnect from "./MetaMaskConnect";
 import WETHAbi from '../contracts/abis/WETHABI.json'
 import { WETHAddress, commonSwapsTreasuryAddress } from "../contracts/addresses/contractAddresses";
 import commonSwapsTreasuryABI from '../contracts/commonSwaps/abis/commonSwapsTreasuryABI.json'
-import { getWETHBalanceInTreasury } from '../commonSwaps/TreasuryHelpers'
+import { getUSDTBalanceInTreasury, getWETHBalanceInTreasury } from '../commonSwaps/TreasuryHelpers'
 
 const DepositCommonSwaps = () => {
 
@@ -16,6 +16,8 @@ const DepositCommonSwaps = () => {
         loading: false,
         error: false,
     });
+    const [WETHAmount, setWETHAmount] = useState(undefined)
+    const [USDTAmount, setUSDTAmount] = useState(undefined)
 
     const approveCommonSwaps = async () => {
         try {
@@ -64,7 +66,9 @@ const DepositCommonSwaps = () => {
 
     const getTreasuryBalances = async () => {
         const WETHBalanceInTreasury = await getWETHBalanceInTreasury()
-        console.log("WETHBalanceInTreasury", WETHBalanceInTreasury)
+        const USDTBalanceInTreasury = await getUSDTBalanceInTreasury()
+        setWETHAmount(WETHBalanceInTreasury)
+        setUSDTAmount(USDTBalanceInTreasury)
     }
 
 
@@ -89,7 +93,8 @@ const DepositCommonSwaps = () => {
                     <button className="reloadTreasuryBalances" onClick={getTreasuryBalances}> Reload Treasury Balances:</button>
                 </>)
             }
-
+<div>{WETHAmount}</div>
+<div>{USDTAmount}</div>
         </>
     )
 }
