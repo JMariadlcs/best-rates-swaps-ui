@@ -5,9 +5,6 @@ import '../styles/commonSwaps.css'
 
 const CommonSwaps = () => {
 
-
-
-
     return (
         <div className="commonSwaps-page">
           <div className="CommonSwaps">
