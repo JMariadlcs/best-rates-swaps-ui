@@ -164,7 +164,7 @@ const DepositCommonSwaps = () => {
                         sushiRate && <p className="textdiv">SushiSwap WETH-USDT output: {sushiRate}</p>
                     }
                     {
-                        camelotRate && <p className="textdiv">CamelotSwapAmountOut WETH-USDT output: {camelotRate}</p>
+                        camelotRate && <p className="textdiv">Camelot WETH-USDT output: {camelotRate}</p>
                     }
                 </div>
             }
