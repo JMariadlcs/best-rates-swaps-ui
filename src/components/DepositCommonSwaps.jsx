@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import web3 from "../contracts/web3";
+import { useState } from "react";
 import MetaMaskConnect from "./MetaMaskConnect";
 import WETHAbi from '../contracts/abis/WETHABI.json'
 import { WETHAddress, USDTAddress, commonSwapsTreasuryAddress } from "../contracts/addresses/contractAddresses";
@@ -26,7 +25,6 @@ const DepositCommonSwaps = () => {
     const [amount, setAmount] = useState('')
     const [needToloadRate, setNeedToLoadRate] = useState(true)
     const handleDepositAmountChange = (e) => {
-        const newAmount = e.target.value
         setAmount(e.target.value)
     }
 
@@ -147,7 +145,6 @@ const DepositCommonSwaps = () => {
         setUSDTAmount(USDTBalanceInTreasury)
     }
 
-
     return (
         <> {
             !userWalletInfo.address && <p className="textdiv"> STEP 1: CONNECT METAMASK </p>
@@ -192,9 +189,10 @@ const DepositCommonSwaps = () => {
                 (<>
                     <p className="textdiv"> STEP 5: SWAP WETH TO USDT </p>
                     {
-                        needToloadRate && <p className="needToLoadRate"> Please click the above button for getting new swap rates: {bestRateProvider} </p>
+                        needToloadRate && <p className="needToLoadRate"> Please click the button in STEP 2 for getting new swap rates: {bestRateProvider} </p>
                     }
-                    <button className="reloadTreasuryBalances" onClick={swapWETHtoUSDT}> Swap whole WETH balance to USDT</button>
+                    {!bestRateProvider && <button className="reloadTreasuryBalances0" disabled={!bestRateProvider} onClick={swapWETHtoUSDT}> Swap whole WETH balance to USDT</button>}
+                    {bestRateProvider && <button className="reloadTreasuryBalances" disabled={!bestRateProvider} onClick={swapWETHtoUSDT}> Swap whole WETH balance to USDT</button>}
                     <p className="textdiv"> Provider with better rate chosen for swapping: {bestRateProvider} </p>
                 </>)
             }
