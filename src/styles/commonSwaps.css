@@ -33,3 +33,20 @@
 .CommonSwaps button:focus {
     outline: none;
 }
+
+.textdiv {
+    font-weight: bold;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34; /* You can adjust the background color as needed */
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+  

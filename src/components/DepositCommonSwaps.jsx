@@ -6,7 +6,7 @@ import { WETHAddress, USDTAddress, commonSwapsTreasuryAddress } from "../contrac
 import commonSwapsTreasuryABI from '../contracts/commonSwaps/abis/commonSwapsTreasuryABI.json'
 import { getUSDTBalanceInTreasury, getWETHBalanceInTreasury } from '../commonSwaps/TreasuryHelpers'
 
-const DepositCommonSwaps = () => {
+const DepositCommonSwaps = ( {bestProvider}) => {
 
     const [userWalletInfo, setUserWalletInfo] = useState({ address: undefined, balance: undefined });
     const [web3Provider, setWeb3Provider] = useState(undefined);
@@ -67,17 +67,37 @@ const DepositCommonSwaps = () => {
     const swapWETHtoUSDT = async () => {
         try {
             const commonSwapsTreasuryContract = new web3Provider.eth.Contract(commonSwapsTreasuryABI, commonSwapsTreasuryAddress, { from: txSigner })
-            console.log("commonSwapsTreasuryContract", commonSwapsTreasuryContract)
             const WETHBalanceInTreasury = await getWETHBalanceInTreasury()
             const path = [WETHAddress, USDTAddress]
             const swapAmount = WETHBalanceInTreasury
-            const selectRouter = 0
+            const selectRouter = 1
             const minAmountOut = 0
             const deadline = Date.now()
-            console.log("SwapArgs", path, swapAmount, selectRouter, minAmountOut, deadline)
             const swapTx = await commonSwapsTreasuryContract.methods.swapWETHforUSDT(path, swapAmount.toString(), selectRouter.toString(), minAmountOut.toString(), deadline.toString())
 
-           await swapTx.send({ from: txSigner })
+            await swapTx.send({ from: txSigner })
+                .on('transactionHash', () => {
+                    setApprovalState({ ...approvalState, loading: true })
+                })
+                .on('receipt', () => {
+                    setApprovalState({ done: true, loading: false, error: false })
+                })
+                .on('error', (error) => {
+                    console.log(`%c${error.message}`, "color: red; background: black; font-size: 20px")
+                    setApprovalState({ ...approvalState, error: true });
+                })
+        } catch (error) {
+            console.error(error)
+            setApprovalState({ ...approvalState, error: true })
+        }
+    }
+
+    const withdrawUSDT = async () => {
+        try {
+            const commonSwapsTreasuryContract = new web3Provider.eth.Contract(commonSwapsTreasuryABI, commonSwapsTreasuryAddress, { from: txSigner })
+            const swapTx = await commonSwapsTreasuryContract.methods.withdrawAllUSDT()
+
+            await swapTx.send({ from: txSigner })
                 .on('transactionHash', () => {
                     setApprovalState({ ...approvalState, loading: true })
                 })
@@ -104,33 +124,52 @@ const DepositCommonSwaps = () => {
 
     return (
         <> {
-            !userWalletInfo.address && <MetaMaskConnect
-                setUserWalletInfo={setUserWalletInfo}
-                setWeb3Provider={setWeb3Provider}
-                setTxSigner={setTxSigner}
-            />
-        }
+            !userWalletInfo.address && <p className="textdiv"> STEP 2: CONNECT METAMASK </p>
+        } {
+
+                !userWalletInfo.address && <MetaMaskConnect
+                    setUserWalletInfo={setUserWalletInfo}
+                    setWeb3Provider={setWeb3Provider}
+                    setTxSigner={setTxSigner}
+                />
+            }
             {
                 userWalletInfo.address &&
                 (<>
+                    <p className="textdiv"> STEP 3: APPROVE WETH </p>
                     <button className="ApproveCommonSwaps" onClick={approveCommonSwaps}> Approve WETH</button>
+                    <p className="textdiv"> STEP 4: DEPOSIT WETH </p>
                     <button className="depositCommonSwaps" onClick={depositWETH}> Deposit WETH</button>
+                    
                 </>)
             }
             {
                 userWalletInfo.address &&
                 (<>
-                    <button className="reloadTreasuryBalances" onClick={getTreasuryBalances}> Reload Treasury Balances:</button>
-                </>)
-            }
-            {
-                userWalletInfo.address &&
-                (<>
+                    <p className="textdiv"> STEP 5: SWAP WETH TO USDT </p>
                     <button className="reloadTreasuryBalances" onClick={swapWETHtoUSDT}> Swap whole WETH balance to USDT</button>
+                    <p className="textdiv"> Provider with better rate chosen for swapping: {bestProvider} </p>
                 </>)
             }
-<div>WETH Balance in Treasury: {WETHAmount}</div>
-<div>USDT Balance in Treasury: {USDTAmount}</div>
+            {
+                userWalletInfo.address &&
+                (<>
+                    <p className="textdiv"> STEP 6: WITHDRAW ALL USDT </p>
+                    <button className="withdrawUSDT" onClick={withdrawUSDT}> Withdraw whole USDT balance</button>
+                </>)
+            }
+            {
+                userWalletInfo.address &&
+                (<>
+                    <button className="reloadTreasuryBalances" onClick={getTreasuryBalances}> Update treasury balances</button>
+                </>)
+            }
+            {
+                WETHAmount && <div>WETH Balance in Treasury: {WETHAmount}</div>
+            }
+            {
+                USDTAmount && <div>USDT Balance in Treasury: {USDTAmount}</div>
+            }
         </>
     )
 }
