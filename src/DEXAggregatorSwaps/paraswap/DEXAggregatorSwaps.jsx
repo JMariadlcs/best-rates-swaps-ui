@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import MetaMaskConnect from '../../components/MetaMaskConnect';
-import { DEXAggregatorAddress, WETHAddress, USDTAddress } from '../../contracts/addresses/contractAddresses'
+import { DEXAggregatorAddress, WETHAddress } from '../../contracts/addresses/contractAddresses'
 import WETHAbi from '../../contracts/abis/WETHABI.json'
 import { getPrices, getTransactionData, performTransaction } from './helpers/paraSwapHelpers'
 
@@ -53,7 +53,8 @@ const DEXAggregatorSwaps = () => {
 
         const routePrices = await getPrices(srcToken, srcDecimals, destToken, destDecimals, srcAmount, side, networkID, includeDEXS)
         let txData = await getTransactionData(networkID, routePrices, userWalletInfo.address)
-        const tx = await performTransaction(txData)
+        console.log("Sending Transaction Data: ", txData)
+        await performTransaction(txData)
     }
 
     return (
