@@ -27,3 +27,5 @@ This contract works in the following way:
 2. Any user can access the platform and initiate a swap for the entire WETH balance held within the contract. The swap is facilitated through the exchange that provides the most favorable rate, as indicated by our frontend interface.
 3. Any user can withdraw the USDT amount of tokens held in the Treasury.
 4. There is a button available for users to retrieve the WETH and USDT token balances of the Treasury contract at any given moment.
+
+Currently, the implemented exchanges available for swapping are UniSwapV2 and SushiSwapV2. It is worth noting that any other exchange, such as Curve or SushiSwapV3, can be incorporated by following the same procedure.
