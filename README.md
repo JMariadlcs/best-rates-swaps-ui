@@ -1,6 +1,6 @@
 # BEST RATES SWAPS
 
-Welcome to Best Swaps Rates. Within this application, you will have the opportunity to perform WETH-USDT swaps across various decentralized exchanges (DEXs) while selecting the most favorable exchange rate available.
+Welcome to Best Swaps Rates. Within this application, you will have the opportunity to perform WETH-USDT swaps across various decentralized exchanges (DEXs) while selecting the most favorable exchange rate available. Currently deployed in Arbitrum.
 
 - Deployed website: [Best-Rates-Swaps](https://best-rates-swaps-ui.vercel.app/).
 - Smart Contracts repository: [Repository](https://github.com/JMariadlcs/best-rate-swaps).
@@ -29,3 +29,6 @@ This contract works in the following way:
 4. There is a button available for users to retrieve the WETH and USDT token balances of the Treasury contract at any given moment.
 
 Currently, the implemented exchanges available for swapping are UniSwapV2 and SushiSwapV2. It is worth noting that any other exchange, such as Curve or SushiSwapV3, can be incorporated by following the same procedure.
+
+## DEXAggregatorSwaps
+The DEXAggregatorSwaps method utilizes [Paraswap's API](https://www.paraswap.io/). This method allows any user to initiate a direct swap of their WETH tokens to USDT from their wallet. The DEXAggregatorSwaps method selects the optimal route from SushiSwapV2, UniSwapV2, UniSwapV3, and Curve, facilitating the swap process and returning the USDT amount to the user's wallet.
