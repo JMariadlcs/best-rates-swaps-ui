@@ -80,7 +80,7 @@ const DEXAggregatorSwaps = () => {
                         className='inputContainer'
                         type="number"
                         id="amountInput"
-                        placeholder="Deposit WETH amount in WEI"
+                        placeholder="WETH amount in WEI"
                         value={amount}
                         onChange={handleDepositAmountChange}
                     />
