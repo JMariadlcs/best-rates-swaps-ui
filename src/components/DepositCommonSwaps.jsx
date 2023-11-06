@@ -168,6 +168,8 @@ const DepositCommonSwaps = () => {
                     }
                 </div>
             }
+
+            { !needToloadRate && <div clasName="postrate-div">
             {
                 userWalletInfo.address &&
                 (<>
@@ -217,6 +219,7 @@ const DepositCommonSwaps = () => {
             {
                 USDTAmount && <div>USDT Balance in Treasury: {USDTAmount}</div>
             }
+            </div>}
         </>
     )
 }
