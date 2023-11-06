@@ -43,16 +43,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-color: #282c34; /* You can adjust the background color as needed */
     color: white;
-    margin: 0;
-    padding: 400px;
+    margin-left: 200px;
+    margin-right: 200px;
   }
 
 .needToLoadRate {
     color: red
 }
+
 
 
   
