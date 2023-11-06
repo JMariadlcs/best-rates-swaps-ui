@@ -61,38 +61,39 @@ const DEXAggregatorSwaps = () => {
         <section className='welcome-section'>
             <p>The operation of the DEX Aggregators section is as follows: Any user can directly swap WETH tokens to USDT from their wallet. The optimal route for token swaps is computed in real time, choosing among UniswapV2, UniswapV3, SushiSwap, and Curve protocols to provide the best rate available.</p>
             <div className="main-container">
-            {
-                !userWalletInfo.address && <p className="textdiv"> STEP 1: CONNECT METAMASK </p>
-            } {
+                {
+                    !userWalletInfo.address && <p className="textdiv"> STEP 1: CONNECT METAMASK </p>
+                } {
 
-                !userWalletInfo.address && <MetaMaskConnect
-                    setUserWalletInfo={setUserWalletInfo}
-                    setWeb3Provider={setWeb3Provider}
-                    setTxSigner={setTxSigner}
-                />
-            }
-            {
-                userWalletInfo.address && <p className="textdiv"> STEP 2: INPUT WETH AMOUNT FOR SWAPPING (Amount in WEI) </p>
+                    !userWalletInfo.address && <MetaMaskConnect
+                        setUserWalletInfo={setUserWalletInfo}
+                        setWeb3Provider={setWeb3Provider}
+                        setTxSigner={setTxSigner}
+                    />
+                }
+                {
+                    userWalletInfo.address && <p className="textdiv"> STEP 2: INPUT WETH AMOUNT FOR SWAPPING (Amount in WEI) </p>
 
-            }
-            {userWalletInfo.address &&
-                <input
-                    type="number"
-                    id="amountInput"
-                    placeholder="Deposit WETH amount in WEI"
-                    value={amount}
-                    onChange={handleDepositAmountChange}
-                />
-            }
-            {<>
-                {userWalletInfo.address && <p className="textdiv"> STEP 3: APPROVE </p>}
-                {userWalletInfo.address && <button className="access-button" onClick={approveDEXAggregator}>Approve amount</button>}
-            </>
-            }
-            {<>
-                {userWalletInfo.address &&<p className="textdiv"> STEP 4: SWAP </p>}
-                {userWalletInfo.address && <button className="access-button" onClick={buildTx}>SWAP</button>}
-            </>}
+                }
+                {userWalletInfo.address &&
+                    <input
+                        className='inputContainer'
+                        type="number"
+                        id="amountInput"
+                        placeholder="Deposit WETH amount in WEI"
+                        value={amount}
+                        onChange={handleDepositAmountChange}
+                    />
+                }
+                {<>
+                    {userWalletInfo.address && <p className="textdiv"> STEP 3: APPROVE </p>}
+                    {userWalletInfo.address && <button className="access-button" onClick={approveDEXAggregator}>Approve amount</button>}
+                </>
+                }
+                {<>
+                    {userWalletInfo.address && <p className="textdiv"> STEP 4: SWAP </p>}
+                    {userWalletInfo.address && <button className="access-button" onClick={buildTx}>SWAP</button>}
+                </>}
             </div>
         </section>
     )

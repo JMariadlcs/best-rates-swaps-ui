@@ -37,3 +37,7 @@
 .welcome-section {
     height: 100%;
 }
+
+.inputContainer {
+    padding: 10px;
+}

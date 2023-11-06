@@ -173,6 +173,7 @@ const DepositCommonSwaps = () => {
                 (<>
                     <p className="textdiv"> STEP 3: APPROVE WETH </p>
                     <input
+                        className="inputContainer"
                         type="number"
                         id="amountInput"
                         placeholder="Deposit WETH amount in WEI"
@@ -206,7 +207,7 @@ const DepositCommonSwaps = () => {
             {
                 userWalletInfo.address &&
                 (<>
-                 <p className="textdiv"> OPTINAL: CHECK TREASURY BALANCES </p>
+                    <p className="textdiv"> OPTINAL: CHECK TREASURY BALANCES </p>
                     <button className="reloadTreasuryBalances" onClick={getTreasuryBalances}> Update treasury balances</button>
                 </>)
             }
